@@ -1,16 +1,16 @@
 blueprint:
-  name: Zen22 (Z-Wave JS) v0.01
-  description: Create automations for the Zooz Zen22 Dimmer using the Z-Wave JS integration.
+  name: Zen76 (Z-Wave JS) v0.01
+  description: Create automations for the Zooz Zen76 Switch using the Z-Wave JS integration.
   domain: automation
   input:
-    zen22:
+    zen76:
       name: Zooz Switch
-      description: List of available Zen22 Dimmers
+      description: List of available Zen76 Switches
       selector:
         device:
           integration: zwave_js
           manufacturer: Zooz
-          model: ZEN22
+          model: ZEN76
     tap_1x_up:
       name: Tap 1x Up
       description: Action to run when Up button is pressed 1 time.
@@ -83,11 +83,11 @@ blueprint:
       default: []
       selector:
         action: {}
-  source_url: https://github.com/dacmcbibs/HASS_Blueprints/blob/main/zoozzen22.yaml
+  source_url: https://github.com/dacmcbibs/HASS_Blueprints/blob/main/zoozzen76.yaml
 mode: single
 max_exceeded: silent
 variables:
-  device_id: !input zen22
+  device_id: !input zen76
 trigger:
 - platform: event
   event_type: zwave_js_value_notification
@@ -103,27 +103,27 @@ action:
     name: Z-Wave JS
     message: 'received event: {{ command_class_name }} - {{ value }} - {{ label }}'
 - choose:
-  - conditions: '{{ property_key_name == ''002'' and value == ''KeyPressed'' }}'
-    sequence: !input tap_1x_up
   - conditions: '{{ property_key_name == ''001'' and value == ''KeyPressed'' }}'
+    sequence: !input tap_1x_up
+  - conditions: '{{ property_key_name == ''002'' and value == ''KeyPressed'' }}'
     sequence: !input tap_1x_dn
-  - conditions: '{{ property_key_name == ''002'' and value == ''KeyPressed2x'' }}'
-    sequence: !input tap_2x_up
   - conditions: '{{ property_key_name == ''001'' and value == ''KeyPressed2x'' }}'
+    sequence: !input tap_2x_up
+  - conditions: '{{ property_key_name == ''002'' and value == ''KeyPressed2x'' }}'
     sequence: !input tap_2x_dn
-  - conditions: '{{ property_key_name == ''002'' and value == ''KeyPressed4x'' }}'
-    sequence: !input tap_4x_up
   - conditions: '{{ property_key_name == ''001'' and value == ''KeyPressed4x'' }}'
+    sequence: !input tap_4x_up
+  - conditions: '{{ property_key_name == ''002'' and value == ''KeyPressed4x'' }}'
     sequence: !input tap_4x_dn
-  - conditions: '{{ property_key_name == ''002'' and value == ''KeyPressed5x'' }}'
-    sequence: !input tap_5x_up
   - conditions: '{{ property_key_name == ''001'' and value == ''KeyPressed5x'' }}'
+    sequence: !input tap_5x_up
+  - conditions: '{{ property_key_name == ''002'' and value == ''KeyPressed5x'' }}'
     sequence: !input tap_5x_dn
-  - conditions: '{{ property_key_name == ''002'' and value == ''KeyHeldDown'' }}'
-    sequence: !input up_btn_hld
-  - conditions: '{{ property_key_name == ''002'' and value == ''KeyReleased'' }}'
-    sequence: !input up_btn_rel
   - conditions: '{{ property_key_name == ''001'' and value == ''KeyHeldDown'' }}'
-    sequence: !input dn_btn_hld
+    sequence: !input up_btn_hld
   - conditions: '{{ property_key_name == ''001'' and value == ''KeyReleased'' }}'
+    sequence: !input up_btn_rel
+  - conditions: '{{ property_key_name == ''002'' and value == ''KeyHeldDown'' }}'
+    sequence: !input dn_btn_hld
+  - conditions: '{{ property_key_name == ''002'' and value == ''KeyReleased'' }}'
     sequence: !input dn_btn_rel

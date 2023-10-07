@@ -1,16 +1,16 @@
 blueprint:
-  name: Zen22 (Z-Wave JS) v0.01
-  description: Create automations for the Zooz Zen22 Dimmer using the Z-Wave JS integration.
+  name: Zen21 (Z-Wave JS) v0.01
+  description: Create automations for the Zooz Zen21 Switch using the Z-Wave JS integration.
   domain: automation
   input:
-    zen22:
+    zen21:
       name: Zooz Switch
-      description: List of available Zen22 Dimmers
+      description: List of available Zen21 Switches
       selector:
         device:
           integration: zwave_js
           manufacturer: Zooz
-          model: ZEN22
+          model: ZEN21
     tap_1x_up:
       name: Tap 1x Up
       description: Action to run when Up button is pressed 1 time.
@@ -83,11 +83,11 @@ blueprint:
       default: []
       selector:
         action: {}
-  source_url: https://github.com/dacmcbibs/HASS_Blueprints/blob/main/zoozzen22.yaml
+  source_url: https://github.com/dacmcbibs/HASS_Blueprints/blob/main/zoozzen21.yaml
 mode: single
 max_exceeded: silent
 variables:
-  device_id: !input zen22
+  device_id: !input zen21
 trigger:
 - platform: event
   event_type: zwave_js_value_notification
