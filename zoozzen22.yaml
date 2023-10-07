@@ -84,7 +84,7 @@ blueprint:
       default: []
       selector:
         action: {}
-  source_url: https://gist.github.com/shannonfritz/45898c82b1712cf0a9ad1745c8ef609a
+  source_url: https://raw.githubusercontent.com/dacmcbibs/HASS_Blueprints/main/zoozzen22.yaml
 mode: single
 max_exceeded: silent
 variables:
